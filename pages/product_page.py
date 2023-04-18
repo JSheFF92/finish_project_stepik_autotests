@@ -27,15 +27,6 @@ class ProductPage(BasePage):
         price2 = price_book_page2.text
         assert price1 == price2, 'Цены добавленной книги и книги в корзине разные'
 
-
-    # def should_not_be_success_message(self):
-    #     assert self.is_not_element_present(By.CSS_SELECTOR, 'div.alert-info p strong'), \
-    #         "Success message is presented should be"
-    #
-    # def should_be_success_message(self):
-    #     assert self.is_disappeared(By.CSS_SELECTOR, 'p.price_color'), \
-    #         "Success message is presented, but should not be"
-
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCES_MESSAGE), \
             "Success message is presented should be"
