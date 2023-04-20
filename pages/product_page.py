@@ -12,7 +12,6 @@ class ProductPage(BasePage):
     def should_be_basket_url(self):
         assert self.browser.current_url
 
-
     def name_true_add_book(self):
         book_name_page1 = self.browser.find_element(By.CSS_SELECTOR, 'h1')
         name1 = book_name_page1.text
