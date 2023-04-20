@@ -1,1 +1,0 @@
-# finish_project_stepik_autotests
