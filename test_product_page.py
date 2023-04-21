@@ -59,7 +59,7 @@ class TestUserAddToBasketFromProductPage:
         page.price_true_add_book()
 
     @pytest.mark.need_review
-    def test_guest_can_go_to_login_page_from_product_page(self, browser):
+    def test_guest_cant_see_product_in_basket_opened_from_product_page(self, browser):
         link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/?promo=offer1"
         page = ProductPage(browser, link)
         page.open()
