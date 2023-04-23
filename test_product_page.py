@@ -3,12 +3,13 @@ from datetime import time
 import faker
 import pytest
 
+from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 
 
 @pytest.mark.parametrize('product_link',
-                         [pytest.param(i, marks=pytest.mark.xfail(i == 7, reason='')) for i in range(10 + 1)])
+                         [pytest.param(i, marks=pytest.mark.xfail(i == 7, reason='')) for i in range(10)])
 @pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser, product_link):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{product_link}"
@@ -63,4 +64,8 @@ class TestUserAddToBasketFromProductPage:
         link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/?promo=offer1"
         page = ProductPage(browser, link)
         page.open()
+        page.open_basket()
         page.should_not_be_success_message()
+        basket_page = BasketPage(browser, browser.current_url)
+        basket_page.assert_check_product_to_basket()
+        basket_page.assert_check_text_basket_is_empty()

@@ -1,28 +1,26 @@
-from selenium.webdriver.common.by import By
-
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
     def go_to_add_basket(self):
-        basket_link = self.browser.find_element(By.CSS_SELECTOR, "button.btn-add-to-basket")
+        basket_link = self.browser.find_element(*ProductPageLocators.BASKET_LINK)
         basket_link.click()
 
     def should_be_basket_url(self):
         assert self.browser.current_url
 
     def name_true_add_book(self):
-        book_name_page1 = self.browser.find_element(By.CSS_SELECTOR, 'h1')
+        book_name_page1 = self.browser.find_element(*ProductPageLocators.BOOK_PAGE_NAME1)
         name1 = book_name_page1.text
-        book_name_page2 = self.browser.find_element(By.CSS_SELECTOR, '#messages div.alert-success strong')
+        book_name_page2 = self.browser.find_element(*ProductPageLocators.BOOK_PAGE_NAME2)
         name2 = book_name_page2.text
         assert name1 == name2, 'Наименования добавленной книги и книги в корзине разные'
 
     def price_true_add_book(self):
-        price_book_page1 = self.browser.find_element(By.CSS_SELECTOR, 'p.price_color')
+        price_book_page1 = self.browser.find_element(*ProductPageLocators.SUCCES_MESSAGE_PRICE)
         price1 = price_book_page1.text
-        price_book_page2 = self.browser.find_element(By.CSS_SELECTOR, 'div.alert-info p strong')
+        price_book_page2 = self.browser.find_element(*ProductPageLocators.SUCCES_MESSAGE)
         price2 = price_book_page2.text
         assert price1 == price2, 'Цены добавленной книги и книги в корзине разные'
 
